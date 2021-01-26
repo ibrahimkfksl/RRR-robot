@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<robot name="odev">
+
+
+  <material name="siyah">
+    <color rgba="0.07450980392 0.07450980392 0.07450980392 1.0" />
+  </material>
+  <material name="mavi">
+    <color rgba="0 0.47843137254 0.8 1.0" />
+  </material>
+  <material name="ozel_renk">
+    <color rgba="0.8 0.56470588235 0.46666666666 1.0" />
+  </material>
+  <material name="kirmizi">
+    <color rgba="0.98823529411 0.52156862745 0.34901960784 1.0" />
+  </material>
+
+  <link name="base">
+    <visual>
+      <geometry>
+        <mesh filename="package://base.stl" scale="0.5 0.5 0.5" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.1"/>
+      <material name="kirmizi" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="1" length="0.2" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.1"/>
+    </collision>
+  </link>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <mesh filename="package://birinci_kol.stl" scale="0.5 0.5 0.5" />
+      </geometry>
+      <origin xyz="0 0 2.3"/>
+      <material name="mavi" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 1" />
+      </geometry>
+      <origin xyz="0 0 0.5"/>
+    </collision>
+  </link>
+
+  <joint name="j1" type="revolute">
+    <parent link="base" />
+    <child link="link1" />
+    <limit effort="30" velocity="1.0" lower="0" upper="1.5408" />
+    <origin xyz="0 0 0.2" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="link2">
+    <visual>
+      <geometry>
+        <mesh filename="package://ikinci_kol.stl" scale="0.5 0.5 0.5" />
+      </geometry>
+      <origin xyz="0 2.5 5.5" />
+      <material name="siyah" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 1" />
+      </geometry>
+      <origin xyz="0 0 0.5" />
+    </collision>
+  </link>
+
+  <joint name="j2" type="revolute">
+    <parent link="link1" />
+    <child link="link2" />
+    <limit effort="30" velocity="1.0" lower="0" upper="1.5408" />
+    <origin xyz="0 0 1" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="link3">
+    <visual>
+      <geometry>
+        <mesh filename="package://ucuncu_kol.stl" scale="0.5 0.5 0.5" />
+      </geometry>
+      <origin xyz="0 0 0.5" />
+      <material name="ozel_renk" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 1" />
+      </geometry>
+      <origin xyz="0 0 0.5" />
+    </collision>
+  </link>
+
+  <joint name="j3" type="revolute">
+    <parent link="link2" />
+    <child link="link3" />
+    <limit effort="30" velocity="1.0" lower="0" upper="1.5408" />
+    <origin xyz="0 0 1" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="end">
+    <visual>
+      <geometry>
+        <mesh filename="package://end.stl" scale="0.5 0.5 0.5" />
+      </geometry>
+      <origin xyz="0 8.5 -1.7 " />
+      <material name="mavi" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 0.2" />
+      </geometry>
+      <origin xyz="0 0 0.1" />
+    </collision>
+  </link>
+
+  <joint name="j4" type="fixed">
+    <parent link="link3" />
+    <child link="end" />
+    <limit effort="30" velocity="1.0" lower="0" upper="1.5408" />
+    <origin xyz="0 0 1" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+  
+</robot>
